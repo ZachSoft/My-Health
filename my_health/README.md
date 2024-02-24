@@ -49,7 +49,7 @@ Communicate with the chatbot AI to get information, share experiences, and conne
 
 
 **License**
-This project is licensed under the MIT License.
+This project is licensed under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007.
 
 **Support**
 For any issues or inquiries, please contact **zachariebushu001@gmail.com.**
