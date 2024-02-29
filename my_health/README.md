@@ -17,7 +17,7 @@ Gemini AI: Gemini AI is integrated to provide intelligent and personalized recom
 
 **Installation Clone the repository.**
 
-git clone https://github.com/
+git clone https://github.com/ZachSoft/My-Health
 Navigate to the project directory.
 
 cd my_health Install dependencies.
