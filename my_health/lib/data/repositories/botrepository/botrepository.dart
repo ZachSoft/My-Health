@@ -46,10 +46,10 @@ class BotRepository extends GetxController {
         return response
             .data['candidates'].first['content']['parts'].first['text'];
       } else {
-        throw HttpExceptions(response.statusCode!);
+        throw HttpExceptions(response.statusCode!).message;
       }
     } catch (e) {
-      throw HttpExceptions(500); // Default to internal server error
+      throw HttpExceptions(500).message; // Default to internal server error
     }
   }
 }

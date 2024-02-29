@@ -13,11 +13,13 @@ class Usermodel {
   String profilePicture;
   String? usern;
   String gender;
+  bool isadmin;
 
 // Constructor for userdata
   Usermodel(
       {required this.email,
       required this.id,
+      this.isadmin = false,
       required this.username,
       required this.firstname,
       required this.lastname,
@@ -55,6 +57,7 @@ class Usermodel {
       'Username': username,
       'ProfilePicture': profilePicture,
       'Gender': gender,
+      'IsAdmin': isadmin
     };
   }
 
@@ -67,6 +70,7 @@ class Usermodel {
       lastname: "",
       phoneNumber: "",
       gender: "",
+      isadmin: false,
       profilePicture: "");
 
 // factory methode to create a usermodel from a document Snapshot
@@ -78,6 +82,7 @@ class Usermodel {
       return Usermodel(
           email: data['Email'] ?? '',
           id: document.id,
+          isadmin: data['IsAdmin'] ?? false,
           username: data['Username'] ?? '',
           firstname: data['FirstName'] ?? '',
           lastname: data['LastName'] ?? '',

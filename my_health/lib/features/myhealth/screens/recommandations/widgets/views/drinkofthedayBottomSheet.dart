@@ -1,15 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:my_health/commons/widgets/customs_shapes/containers/roundedcontainer.dart';
 import 'package:my_health/commons/widgets/texts/foodmetric.dart';
+import 'package:my_health/features/personalisation/models/recommandations/recommandationmodel.dart';
 import 'package:my_health/utils/constants/colors.dart';
-import 'package:my_health/utils/constants/images_strings.dart';
 import 'package:my_health/utils/constants/sizes.dart';
+import 'package:my_health/utils/shimmers/shimmer.dart';
 import 'package:readmore/readmore.dart';
 
 class DrinkoftheDayBottomSheet extends StatelessWidget {
-  const DrinkoftheDayBottomSheet({super.key});
+  const DrinkoftheDayBottomSheet({super.key, required this.drink});
 
+  final RecommandationModel drink;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -23,22 +26,25 @@ class DrinkoftheDayBottomSheet extends StatelessWidget {
               padding: const EdgeInsets.all(Tsizes.sm),
               width: double.infinity,
               height: 180,
-              child: const Center(
-                child: Image(
-                  image: AssetImage(
-                    TImagestring.herbalTea,
-                  ),
-                  fit: BoxFit.contain,
+              child: Center(
+                  child: CachedNetworkImage(
+                imageUrl: drink.imageurl,
+                fit: BoxFit.contain,
+                 width: 150,
+                progressIndicatorBuilder: (context, url, progress) =>
+                    const ShimmerEffect(
+                  height: 180,
                   width: 150,
                 ),
-              ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              )),
             ),
             const SizedBox(height: Tsizes.md),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Herbal tea",
+                  drink.name,
                   style: Theme.of(context)
                       .textTheme
                       .titleSmall!
@@ -75,7 +81,7 @@ class DrinkoftheDayBottomSheet extends StatelessWidget {
             ),
             const SizedBox(height: Tsizes.md),
             ReadMoreText(
-              "Herbal teas offer a variety of potential advantages, including being a low-calorie beverage, providing hydration, and containing compounds with potential health benefits. However, it's important to note that the nutritional content can vary depending on the specific herbs used in the tea. Here are some general advantages and considerations.,",
+              drink.description,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontWeight: FontWeight.w200,
                   ),
@@ -98,18 +104,18 @@ class DrinkoftheDayBottomSheet extends StatelessWidget {
             ),
 
             const SizedBox(height: Tsizes.sm),
-            const Row(
+            Row(
               children: [
                 Expanded(
                   child: foodmetric(
-                    title: "Low in calories : ",
+                    title: drink.values![0],
                     value: "",
                     icon: Iconsax.flash_circle,
                   ),
                 ),
                 Expanded(
                   child: foodmetric(
-                    title: "Antioxidants ",
+                    title: drink.values![1],
                     value: "",
                     icon: Iconsax.cake,
                   ),
@@ -117,18 +123,18 @@ class DrinkoftheDayBottomSheet extends StatelessWidget {
               ],
             ),
             const SizedBox(height: Tsizes.sm),
-            const Row(
+            Row(
               children: [
                 Expanded(
                   child: foodmetric(
-                    title: "Hydration ",
+                    title: drink.values![2],
                     value: "",
                     icon: Iconsax.d_cube_scan,
                   ),
                 ),
                 Expanded(
                   child: foodmetric(
-                    title: "Low Glycemic index ",
+                    title: drink.values![3],
                     value: "",
                     icon: Iconsax.favorite_chart,
                   ),

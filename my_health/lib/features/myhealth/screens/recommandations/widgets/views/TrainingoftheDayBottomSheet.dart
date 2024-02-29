@@ -3,13 +3,15 @@ import 'package:iconsax/iconsax.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_health/commons/widgets/customs_shapes/containers/roundedcontainer.dart';
 import 'package:my_health/commons/widgets/texts/foodmetric.dart';
+import 'package:my_health/features/personalisation/models/recommandations/recommandationmodel.dart';
 import 'package:my_health/utils/constants/colors.dart';
-import 'package:my_health/utils/constants/images_strings.dart';
 import 'package:my_health/utils/constants/sizes.dart';
 import 'package:readmore/readmore.dart';
 
 class TrainingoftheDayBottomSheet extends StatelessWidget {
-  const TrainingoftheDayBottomSheet({super.key});
+  const TrainingoftheDayBottomSheet({super.key, required this.training});
+
+  final RecommandationModel training;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class TrainingoftheDayBottomSheet extends StatelessWidget {
               height: 180,
               child: Center(
                 child: Lottie.asset(
-                  TImagestring.training1,
+                  training.imageurl,
                   fit: BoxFit.contain,
                   width: 150,
                 ),
@@ -37,7 +39,7 @@ class TrainingoftheDayBottomSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Back Pushups",
+                  training.name,
                   style: Theme.of(context)
                       .textTheme
                       .titleSmall!
@@ -74,7 +76,7 @@ class TrainingoftheDayBottomSheet extends StatelessWidget {
             ),
             const SizedBox(height: Tsizes.md),
             ReadMoreText(
-              "Engaging in regular physical activity, including exercises like pushups, can offer several benefits for individuals with diabetes. It's important to note that before starting any new exercise routine, especially if you have diabetes or any other health condition, you should consult with your healthcare provider for personalized advice. Here are some potential advantages of pushups for individuals with diabetes:,",
+              training.description,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontWeight: FontWeight.w200,
                   ),
@@ -97,13 +99,13 @@ class TrainingoftheDayBottomSheet extends StatelessWidget {
             ),
 
             const SizedBox(height: Tsizes.sm),
-            const Row(
+            Row(
               children: [
                 Expanded(
                   child: SizedBox(
                     width: 130,
                     child: foodmetric(
-                      title: "Blood Sugar\n Management: ",
+                      title: training.values![0],
                       value: "",
                       icon: Iconsax.flash_circle,
                     ),
@@ -113,7 +115,7 @@ class TrainingoftheDayBottomSheet extends StatelessWidget {
                   child: SizedBox(
                     width: 130,
                     child: foodmetric(
-                      title: "Weight\n Management ",
+                      title: training.values![1],
                       value: "",
                       icon: Iconsax.cake,
                     ),
@@ -122,13 +124,13 @@ class TrainingoftheDayBottomSheet extends StatelessWidget {
               ],
             ),
             const SizedBox(height: Tsizes.sm),
-            const Row(
+            Row(
               children: [
                 Expanded(
                   child: SizedBox(
                     width: 130,
                     child: foodmetric(
-                      title: "Improves Insulin\n Sensitivity ",
+                      title: training.values![2],
                       value: "",
                       icon: Iconsax.d_cube_scan,
                     ),
@@ -138,7 +140,7 @@ class TrainingoftheDayBottomSheet extends StatelessWidget {
                   child: SizedBox(
                     width: 130,
                     child: foodmetric(
-                      title: "Stress Reduction ",
+                      title: training.values![3],
                       value: "",
                       icon: Iconsax.favorite_chart,
                     ),

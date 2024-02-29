@@ -7,11 +7,15 @@ import 'package:my_health/utils/helpers/helpers_functions.dart';
 class loginSocialButtons extends StatelessWidget {
   const loginSocialButtons({
     super.key,
+    this.ontapGooglesignin,
+    this.ontapFacebookSignin,
   });
-
+  final VoidCallback? ontapGooglesignin;
+  final VoidCallback? ontapFacebookSignin;
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -24,13 +28,13 @@ class loginSocialButtons extends StatelessWidget {
             ),
           ),
           child: IconButton(
-              onPressed: () {},
+              onPressed: ontapGooglesignin,
               icon: const Image(
                 image: AssetImage(
                   TImagestring.google,
                 ),
-                width: Tsizes.iconMd * 1.4,
-                height: Tsizes.iconMd * 1.4,
+                width: Tsizes.iconMd,
+                height: Tsizes.iconMd,
               )),
         ),
         const SizedBox(width: Tsizes.spaceBtwItems),
@@ -43,7 +47,7 @@ class loginSocialButtons extends StatelessWidget {
             ),
           ),
           child: IconButton(
-              onPressed: () {},
+              onPressed: ontapFacebookSignin,
               icon: const Image(
                 image: AssetImage(
                   TImagestring.facebook,

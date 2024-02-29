@@ -5,6 +5,7 @@ import 'package:my_health/commons/widgets/icons/circular_icon.dart';
 import 'package:my_health/commons/widgets/images/TcircularImage.dart';
 import 'package:my_health/commons/widgets/texts/Section_heading.dart';
 import 'package:my_health/features/personalisation/controllers/controllers/usercontroller/usercontroller.dart';
+import 'package:my_health/features/personalisation/screens/settings/admin/management/management/dashboard.dart';
 import 'package:my_health/features/personalisation/screens/settings/profile/actions/updateuserpages/changeName/updatename.dart';
 import 'package:my_health/features/personalisation/screens/settings/profile/widgets/profile_menu.dart';
 
@@ -151,6 +152,19 @@ class TprofileScreen extends StatelessWidget {
                 height: Tsizes.spaceBtwItems,
               ),
 
+              SizedBox(
+                width: THelperFunctions.screenWidth() / 1.2,
+                child: controller.user.value.isadmin
+                    ? ElevatedButton(
+                        onPressed: () => Get.to(() => const DashboardScreen()),
+                        child: const Text(
+                          "Admin dashboard",
+                        ))
+                    : const SizedBox(),
+              ),
+              const SizedBox(
+                height: Tsizes.spaceBtwItems,
+              ),
               Center(
                 child: SizedBox(
                   width: THelperFunctions.screenWidth() / 1.2,
@@ -160,7 +174,7 @@ class TprofileScreen extends StatelessWidget {
                         "Delete account",
                       )),
                 ),
-              )
+              ),
             ],
           ),
         ),

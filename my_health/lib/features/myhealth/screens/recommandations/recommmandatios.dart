@@ -28,9 +28,10 @@ class MyHealthReccommandationScreen extends StatelessWidget {
                   bottom: Tsizes.defaultSpace),
               child: Column(
                 children: [
+                       // Recommandations views
                   RecommandationsViews(),
                 ],
-                // Recommandations views
+           
               ),
             )
           ],

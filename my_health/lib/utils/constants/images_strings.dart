@@ -6,8 +6,8 @@ class TImagestring {
   static const String lightAppLogo = "assets/Logos/logowhite.png";
 
 // -- Social Logos
-  static const String google = "assets/Logos/icons8-facebook-48.png";
-  static const String facebook = "assets/Logos/icons8-google-48.png";
+  static const String facebook = "assets/Logos/icons8-facebook-48.png";
+  static const String google = "assets/Logos/icons8-google-48.png";
 
   // onboarding images
 

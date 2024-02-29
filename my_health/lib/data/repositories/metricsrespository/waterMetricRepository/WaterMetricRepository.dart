@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:my_health/data/repositories/authentification_repositories/authentification_repository.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:my_health/features/myhealth/models/metrics%20models/metricsmodels.dart';
+import 'package:my_health/utils/exceptions/firebase_auth_exceptions.dart';
+import 'package:my_health/utils/exceptions/firebase_exceptions.dart';
 
 class HydationRepository extends GetxController {
   // creating an instance
@@ -38,14 +41,16 @@ class HydationRepository extends GetxController {
           'lastUpdated': FieldValue.serverTimestamp(),
         });
       }
+     } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthExceptions(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TfirebaseException(e.code).message;
     } on FormatException catch (e) {
       throw e.message;
-    } on FirebaseException catch (e) {
-      throw e.code;
     } on PlatformException catch (e) {
       throw e.code;
     } catch (e) {
-      throw "Something went wrong";
+      throw "Something went wrong, please try again";
     }
   }
 
@@ -120,14 +125,16 @@ class HydationRepository extends GetxController {
         // Add the model to the list
         hydrationData.add(hydrationModel);
       }
+     } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthExceptions(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TfirebaseException(e.code).message;
     } on FormatException catch (e) {
       throw e.message;
-    } on FirebaseException catch (e) {
-      throw e.code;
     } on PlatformException catch (e) {
       throw e.code;
     } catch (e) {
-      throw "Something went wrong";
+      throw "Something went wrong, please try again";
     }
 
     return hydrationData;

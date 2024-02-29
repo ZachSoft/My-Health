@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_health/commons/widgets/customs_shapes/containers/roundedcontainer.dart';
-import 'package:my_health/features/myhealth/controllers/recommandationcontroller.dart/recommandationcontroller.dart';
+import 'package:my_health/features/personalisation/controllers/controllers/admincontroller/addrecommandationcontroller/addrecommandationcontroller.dart';
 import 'package:my_health/utils/constants/colors.dart';
 import 'package:my_health/utils/constants/sizes.dart';
 

@@ -1,6 +1,7 @@
 import 'package:my_health/commons/styles/Spacing_style.dart';
 import 'package:my_health/commons/widgets/login%20&%20signup/formdivider.dart';
 import 'package:my_health/commons/widgets/login%20&%20signup/socialbutton.dart';
+import 'package:my_health/features/authentification/controllers/login/logincontroller.dart';
 
 import 'package:my_health/features/authentification/screens/signup/widgets/signup_form.dart';
 import 'package:my_health/utils/constants/TextString.dart';
@@ -51,7 +52,10 @@ class MyHealthSignUpScreen extends StatelessWidget {
                 height: Tsizes.spaceBtwSections,
               ),
               // Social buttons
-              const loginSocialButtons(),
+              loginSocialButtons(
+                ontapGooglesignin: () =>
+                    LoginController.instance.loginWithGoogleSignin(),
+              ),
             ],
           ),
         ),

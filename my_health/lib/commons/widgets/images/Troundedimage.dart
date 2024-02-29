@@ -1,6 +1,7 @@
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:my_health/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:my_health/utils/shimmers/shimmer.dart';
 
 class TroundedImage extends StatelessWidget {
   const TroundedImage({
@@ -45,13 +46,25 @@ class TroundedImage extends StatelessWidget {
           borderRadius: applyImageBorderRadius
               ? BorderRadius.circular(borderradius)
               : BorderRadius.zero,
-          child: Image(
-            image: isnetworkImage
-                ? NetworkImage(imageurl)
-                : AssetImage(imageurl) as ImageProvider,
-            fit: fit,
-            width: double.infinity,
-          ),
+          child: isnetworkImage
+              ? CachedNetworkImage(
+                  fit: fit,
+                  imageUrl: imageurl,
+                  height: height,
+                  width: double.infinity,
+                  progressIndicatorBuilder: (context, url, progress) =>
+                      ShimmerEffect(
+                    height: height!,
+                    width: double.infinity,
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                )
+              : Image(
+                  image: isnetworkImage
+                      ? NetworkImage(imageurl)
+                      : AssetImage(imageurl) as ImageProvider,
+                  fit: fit,
+                ),
         ),
       ),
     );

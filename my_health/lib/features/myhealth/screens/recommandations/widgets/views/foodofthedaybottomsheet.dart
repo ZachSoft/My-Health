@@ -1,14 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:my_health/commons/widgets/customs_shapes/containers/roundedcontainer.dart';
 import 'package:my_health/commons/widgets/texts/foodmetric.dart';
+import 'package:my_health/features/personalisation/models/recommandations/recommandationmodel.dart';
 import 'package:my_health/utils/constants/colors.dart';
-import 'package:my_health/utils/constants/images_strings.dart';
 import 'package:my_health/utils/constants/sizes.dart';
+import 'package:my_health/utils/shimmers/shimmer.dart';
 import 'package:readmore/readmore.dart';
 
 class FoodoftheDayBottomSheet extends StatelessWidget {
-  const FoodoftheDayBottomSheet({super.key});
+  const FoodoftheDayBottomSheet({super.key, required this.meal});
+
+  final RecommandationModel meal;
 
   @override
   Widget build(BuildContext context) {
@@ -23,22 +27,25 @@ class FoodoftheDayBottomSheet extends StatelessWidget {
               padding: const EdgeInsets.all(Tsizes.sm),
               width: double.infinity,
               height: 180,
-              child: const Center(
-                child: Image(
-                  image: AssetImage(
-                    TImagestring.eggplant,
-                  ),
-                  fit: BoxFit.contain,
+              child: Center(
+                  child: CachedNetworkImage(
+                imageUrl: meal.imageurl,
+                fit: BoxFit.contain,
+                width: 150,
+                progressIndicatorBuilder: (context, url, progress) =>
+                    const ShimmerEffect(
+                  height: 180,
                   width: 150,
                 ),
-              ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              )),
             ),
             const SizedBox(height: Tsizes.md),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Egg plant",
+                  meal.name,
                   style: Theme.of(context)
                       .textTheme
                       .titleSmall!
@@ -75,7 +82,7 @@ class FoodoftheDayBottomSheet extends StatelessWidget {
             ),
             const SizedBox(height: Tsizes.md),
             ReadMoreText(
-              "Eggplants, also known as aubergines, are low in calories and rich in nutrients. Here is the approximate nutritional value for a 1-cup (82g) serving of cooked, cubed eggplant:Calories: 20 ,Protein: 0.8 gramsFat: 0.2 gramsCarbohydrates: 4.8 gramsFiber: 2.5 gramsSugars: 2.8 gramsIn addition to these macronutrients, eggplants also provide various vitamins and minerals, including:Eggplants are also a good source of antioxidants, particularly nasunin, which is found in the skin and has been associated with potential health benefits.Keep in mind that the nutritional content can vary slightly depending on the cooking method and specific variety of eggplant. Overall, including eggplants in your diet can contribute to a nutrient-rich and low-calorie addition to meals.,",
+              meal.description,
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontWeight: FontWeight.w200,
                   ),
@@ -98,38 +105,38 @@ class FoodoftheDayBottomSheet extends StatelessWidget {
             ),
 
             const SizedBox(height: Tsizes.sm),
-            const Row(
+            Row(
               children: [
                 Expanded(
                   child: foodmetric(
                     title: "Glycemic index : ",
-                    value: "15",
+                    value: meal.glycemicIndex!,
                     icon: Iconsax.flash_circle,
                   ),
                 ),
                 Expanded(
                   child: foodmetric(
                     title: "Calories : ",
-                    value: "20",
+                    value: meal.calories!,
                     icon: Iconsax.cake,
                   ),
                 ),
               ],
             ),
             const SizedBox(height: Tsizes.sm),
-            const Row(
+            Row(
               children: [
                 Expanded(
                   child: foodmetric(
                     title: "Fiber : ",
-                    value: "2.5 gramms",
+                    value: meal.fiber!,
                     icon: Iconsax.d_cube_scan,
                   ),
                 ),
                 Expanded(
                   child: foodmetric(
                     title: "Protein : ",
-                    value: "0.8 gramms",
+                    value: meal.protein!,
                     icon: Iconsax.favorite_chart,
                   ),
                 ),

@@ -21,7 +21,7 @@ class SignupController extends GetxController {
   final phoneNumber = TextEditingController();
   final userName = TextEditingController();
   final password = TextEditingController();
-  final gender = '';
+  final gender = 'Male';
 
   void setgender(String gender) {
     gender = gender;

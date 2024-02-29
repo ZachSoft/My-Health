@@ -2,7 +2,6 @@ import 'package:my_health/commons/widgets/customs_shapes/containers/sortablewidg
 import 'package:my_health/features/authentification/controllers/signup/signupcontroller.dart';
 import 'package:my_health/utils/constants/TextString.dart';
 import 'package:my_health/utils/constants/colors.dart';
-import 'package:my_health/utils/constants/enums.dart';
 import 'package:my_health/utils/constants/sizes.dart';
 import 'package:my_health/utils/validators/validators.dart';
 import 'package:flutter/material.dart';
@@ -142,8 +141,7 @@ class signupForm extends StatelessWidget {
               Expanded(
                 child: SortableWidget(
                     onChange: (value) => controller.setgender(value),
-                    items:
-                        Genders.values.map((e) => e.name.toString()).toList()),
+                    items: const ['Male', 'Female', 'Other']),
               )
             ],
           ),

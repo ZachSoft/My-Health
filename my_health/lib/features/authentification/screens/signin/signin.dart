@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_health/commons/widgets/login%20&%20signup/formdivider.dart';
+import 'package:my_health/commons/widgets/login%20&%20signup/socialbutton.dart';
+import 'package:my_health/features/authentification/controllers/login/logincontroller.dart';
 import 'package:my_health/features/authentification/screens/signin/widgets/LoginForm.dart';
 import 'package:my_health/utils/constants/sizes.dart';
 import 'package:my_health/utils/device/device_utility.dart';
@@ -34,7 +37,23 @@ class MyHealthSigninScreen extends StatelessWidget {
               ),
 
               // Login form
-              const LoginForm()
+              const LoginForm(),
+              // Signup Btn
+              const SizedBox(
+                height: Tsizes.spaceBtwItems,
+              ),
+              // Divider
+
+              const divider(label: "Or login with"),
+
+              const SizedBox(
+                height: Tsizes.spaceBtwSections,
+              ),
+              // Social buttons
+              loginSocialButtons(
+                ontapGooglesignin: () =>
+                    LoginController.instance.loginWithGoogleSignin(),
+              ),
             ],
           ),
         ),
