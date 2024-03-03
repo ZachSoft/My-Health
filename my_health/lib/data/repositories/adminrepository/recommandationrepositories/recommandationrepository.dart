@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:my_health/data/repositories/authentification_repositories/authentification_repository.dart';
-import 'package:my_health/features/personalisation/controllers/controllers/admincontroller/addrecommandationcontroller/addrecommandationcontroller.dart';
 import 'package:my_health/features/personalisation/models/recommandations/recommandationmodel.dart';
 import 'package:my_health/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:my_health/utils/exceptions/firebase_exceptions.dart';
