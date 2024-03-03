@@ -2,7 +2,7 @@ import 'package:my_health/commons/widgets/appbar/appbar.dart';
 import 'package:my_health/commons/widgets/icons/circular_icon.dart';
 import 'package:my_health/commons/widgets/listtile/settingmenutile.dart';
 import 'package:my_health/commons/widgets/texts/Section_heading.dart';
-import 'package:my_health/features/personalisation/screens/settings/admin/management/management/recommandationManagement.dart';
+import 'package:my_health/features/personalisation/screens/settings/admin/management/management/addrecommandation/addrecommandation.dart';
 import 'package:my_health/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -52,11 +52,10 @@ class DashboardScreen extends StatelessWidget {
 
                   // account setting
                   TsettingMenutile(
-                    title: "Manage recommandations ",
-                    subtitle: "Add or delete a recommandation ",
+                    title: "Recommandations ",
+                    subtitle: "Add a recommandation",
                     icon: Iconsax.forward_item,
-                    ontap: () =>
-                        Get.to(() => const RecommandationsAdminScreen()),
+                    ontap: () => Get.to(() => const AddRecommandationScreen()),
                     trailing: const Icon(Iconsax.add_circle),
                   ),
                   TsettingMenutile(
@@ -86,9 +85,9 @@ class DashboardScreen extends StatelessWidget {
                   ),
 
                   const TsettingMenutile(
-                    title: "Manage users ",
+                    title: "Users ",
                     icon: Iconsax.user,
-                    subtitle: "",
+                    subtitle: "Manage users",
                     trailing: Icon(Iconsax.add_circle),
                   ),
                 ],

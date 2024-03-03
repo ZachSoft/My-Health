@@ -4,12 +4,12 @@ import 'package:my_health/commons/widgets/customs_shapes/containers/primary_head
 import 'package:my_health/commons/widgets/texts/Section_heading.dart';
 import 'package:my_health/features/myhealth/screens/support/widgets/appbar.dart';
 import 'package:my_health/features/myhealth/screens/support/widgets/category.dart';
-import 'package:my_health/features/myhealth/screens/support/widgets/doctors.dart';
+import 'package:my_health/features/myhealth/screens/support/widgets/doctor/doctors.dart';
 import 'package:my_health/utils/constants/images_strings.dart';
 import 'package:my_health/utils/constants/sizes.dart';
 
-class MyHealthDoctorScreen extends StatelessWidget {
-  const MyHealthDoctorScreen({super.key});
+class MyHealthSupportScreen extends StatelessWidget {
+  const MyHealthSupportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

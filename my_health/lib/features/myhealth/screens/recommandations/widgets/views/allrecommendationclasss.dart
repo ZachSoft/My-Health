@@ -59,8 +59,10 @@ class AllRecommandations extends StatelessWidget {
                         : null,
                     suffixIcon: controller.issearching.value
                         ? IconButton(
-                            onPressed: () =>
-                                controller.issearching.value = false,
+                            onPressed: () {
+                              controller.issearching.value = false;
+                              controller.searchcontroller.clear();
+                            },
                             icon: const Icon(Icons.close))
                         : null,
                     hintText: "Search anything here",
