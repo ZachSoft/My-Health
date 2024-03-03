@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
 import 'package:iconsax/iconsax.dart';
 import 'package:my_health/commons/widgets/customs_shapes/containers/roundedcontainer.dart';
 import 'package:my_health/commons/widgets/texts/foodmetric.dart';
+import 'package:my_health/data/repositories/authentification_repositories/authentification_repository.dart';
+import 'package:my_health/features/personalisation/controllers/controllers/admincontroller/addrecommandationcontroller/addrecommandationcontroller.dart';
 import 'package:my_health/features/personalisation/models/recommandations/recommandationmodel.dart';
 import 'package:my_health/utils/constants/colors.dart';
 import 'package:my_health/utils/constants/sizes.dart';
@@ -53,29 +56,45 @@ class FoodoftheDayBottomSheet extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    const Icon(
-                      Iconsax.heart,
-                      color: Tcolors.primary,
-                    ),
-                    const SizedBox(
-                      width: Tsizes.sm / 2,
-                    ),
-                    Text.rich(TextSpan(children: [
-                      TextSpan(
-                        text: " 1240 ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(fontWeight: FontWeight.w900),
-                      ),
-                      TextSpan(
-                        text: "Liked this ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(fontWeight: FontWeight.w200),
-                      )
-                    ]))
+                    IconButton(
+                        onPressed: () =>
+                            RecommandationController.instance.saveLike(meal.id),
+                        icon:
+                            // Obx(() {
+                            //   return
+                            meal.likes!.contains(AuthentificationRepository
+                                    .instance.authUser!.uid)
+                                ? const Icon(Icons.favorite,
+                                    color: Tcolors.primary)
+                                : const Icon(
+                                    Iconsax.heart,
+                                    color: Tcolors.primary,
+                                  )
+                        // })
+                        ),
+                    // Obx(() {
+                    //   return
+
+                    SizedBox(
+                        child: meal.likes!.isNotEmpty
+                            ? Text.rich(TextSpan(children: [
+                                TextSpan(
+                                  text: meal.likes!.length.toString(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(fontWeight: FontWeight.w900),
+                                ),
+                                TextSpan(
+                                  text: " Likes ",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(fontWeight: FontWeight.w200),
+                                )
+                              ]))
+                            : const SizedBox()),
+                    // })
                   ],
                 )
               ],

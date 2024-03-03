@@ -32,13 +32,16 @@ class TsectionHeading extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         if (showactionbtn)
-          const TRoundedContainer(
-            padding: EdgeInsets.symmetric(
-                horizontal: Tsizes.md, vertical: Tsizes.sm / 16),
-            backgroundColor: Tcolors.black,
-            child: Icon(
-              Icons.more_horiz,
-              color: Tcolors.white,
+          GestureDetector(
+            onTap: onPressed,
+            child: const TRoundedContainer(
+              padding: EdgeInsets.symmetric(
+                  horizontal: Tsizes.md, vertical: Tsizes.sm / 16),
+              backgroundColor: Tcolors.black,
+              child: Icon(
+                Icons.more_horiz,
+                color: Tcolors.white,
+              ),
             ),
           )
       ],

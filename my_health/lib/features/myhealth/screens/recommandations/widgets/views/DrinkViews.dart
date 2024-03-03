@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:my_health/commons/widgets/cards/vertical_card.dart';
 import 'package:my_health/commons/widgets/layouts/grid_layout.dart';
 import 'package:my_health/commons/widgets/texts/Section_heading.dart';
+import 'package:my_health/features/myhealth/screens/recommandations/widgets/views/allrecommendationclasss.dart';
 import 'package:my_health/features/myhealth/screens/recommandations/widgets/views/drinkoftheday.dart';
 import 'package:my_health/features/myhealth/screens/recommandations/widgets/views/drinkofthedayBottomSheet.dart';
 import 'package:my_health/features/personalisation/controllers/controllers/admincontroller/addrecommandationcontroller/addrecommandationcontroller.dart';
@@ -32,9 +33,11 @@ class DrinkView extends StatelessWidget {
 
         const DrinkoftheDay(),
         const SizedBox(height: Tsizes.spaceBtwItems * 2),
-        const TsectionHeading(
+        TsectionHeading(
           headingtitle: "Others Drinks",
           showactionbtn: true,
+          onPressed: () => Get.to(
+              () => const AllRecommandations(title: "Drinks", filter: "Drink")),
         ),
         const SizedBox(height: Tsizes.spaceBtwItems * 2),
 

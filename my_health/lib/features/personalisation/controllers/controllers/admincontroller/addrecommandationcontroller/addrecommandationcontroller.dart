@@ -49,6 +49,7 @@ class RecommandationController extends GetxController {
   }
 
   // Textcontrollers
+
   static File? imagePreview = imagePreview;
   final isLoading = false.obs;
   final name = TextEditingController();
@@ -68,6 +69,25 @@ class RecommandationController extends GetxController {
       <RecommandationModel>[].obs;
   final RxList<RecommandationModel> featuredRecommandations =
       <RecommandationModel>[].obs;
+
+// Search feature
+  final issearching = false.obs;
+  final searchcontroller = TextEditingController();
+
+  RxList<RecommandationModel> filteredRecommandations =
+      <RecommandationModel>[].obs;
+
+// Add this method to filter recommendations
+  void filterRecommandations(String filter) {
+    final query = searchcontroller.text.trim().toLowerCase();
+    issearching.value = true;
+
+    // If there is a query, filter recommendations based on both query and filter
+    filteredRecommandations.assignAll(Recommandations.where((recommandation) =>
+            recommandation.type == filter &&
+            recommandation.name.toLowerCase().contains(query.toLowerCase()))
+        .toList());
+  }
 
 // Initialize the Recommandations
   @override
@@ -201,6 +221,14 @@ class RecommandationController extends GetxController {
       Loaders.errorSnackbar(title: "Oh snap", message: e.toString());
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  Future<void> saveLike(String recommandationid) async {
+    try {
+      await _recommandationrepository.savelike(recommandationid);
+    } catch (e) {
+      Loaders.errorSnackbar(title: "Oh snap", message: e.toString());
     }
   }
 }

@@ -4,6 +4,7 @@ import 'package:my_health/commons/widgets/cards/vertical_card2.dart';
 import 'package:my_health/commons/widgets/layouts/grid_layout.dart';
 import 'package:my_health/commons/widgets/texts/Section_heading.dart';
 import 'package:my_health/features/myhealth/screens/recommandations/widgets/views/TrainingoftheDayBottomSheet.dart';
+import 'package:my_health/features/myhealth/screens/recommandations/widgets/views/allrecommendationclasss.dart';
 import 'package:my_health/features/myhealth/screens/recommandations/widgets/views/trainingoftheday.dart';
 import 'package:my_health/features/personalisation/controllers/controllers/admincontroller/addrecommandationcontroller/addrecommandationcontroller.dart';
 import 'package:my_health/utils/constants/colors.dart';
@@ -27,10 +28,11 @@ class TrainingView extends StatelessWidget {
 
         const TrainingoftheDay(),
         const SizedBox(height: Tsizes.spaceBtwItems * 2),
-        const TsectionHeading(
-          headingtitle: "Others Exercises",
-          showactionbtn: true,
-        ),
+        TsectionHeading(
+            headingtitle: "Others Exercises",
+            showactionbtn: true,
+            onPressed: () => Get.to(() => const AllRecommandations(
+                title: "Training", filter: "Training"))),
         const SizedBox(height: Tsizes.spaceBtwItems),
 
         // Food ot the day

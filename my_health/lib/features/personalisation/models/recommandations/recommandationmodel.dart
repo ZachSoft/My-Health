@@ -11,7 +11,7 @@ class RecommandationModel {
   final String? fiber;
   final String? glycemicIndex;
   final String? protein;
-  final int? likes;
+  final List<String>? likes;
 
   final List<String>? values;
   RecommandationModel({
@@ -22,7 +22,7 @@ class RecommandationModel {
     required this.imageurl,
     this.calories,
     this.fiber,
-    this.likes = 0,
+    this.likes,
     this.glycemicIndex,
     this.protein,
     this.values,
@@ -48,7 +48,6 @@ class RecommandationModel {
       DocumentSnapshot<Map<String, dynamic>> map) {
     return RecommandationModel(
       id: map['id'] as String,
-      likes: map['likes'],
       name: map['name'] as String,
       description: map['description'] as String,
       type: map['type'] as String,
@@ -61,6 +60,11 @@ class RecommandationModel {
       values: map['values'] != null
           ? List<String>.from(
               (map['values']),
+            )
+          : null,
+      likes: map['likes'] != null
+          ? List<String>.from(
+              (map['likes']),
             )
           : null,
     );

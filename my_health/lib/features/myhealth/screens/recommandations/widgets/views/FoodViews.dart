@@ -4,6 +4,7 @@ import 'package:my_health/commons/widgets/cards/vertical_card.dart';
 import 'package:my_health/commons/widgets/layouts/grid_layout.dart';
 import 'package:my_health/commons/widgets/texts/Section_heading.dart';
 import 'package:my_health/features/myhealth/screens/recommandations/widgets/views/Foodoftheday.dart';
+import 'package:my_health/features/myhealth/screens/recommandations/widgets/views/allrecommendationclasss.dart';
 import 'package:my_health/features/myhealth/screens/recommandations/widgets/views/foodofthedaybottomsheet.dart';
 import 'package:my_health/features/personalisation/controllers/controllers/admincontroller/addrecommandationcontroller/addrecommandationcontroller.dart';
 import 'package:my_health/utils/constants/colors.dart';
@@ -28,10 +29,11 @@ class FoodView extends StatelessWidget {
         const SizedBox(height: Tsizes.spaceBtwItems * 2),
         const FoodoftheDay(),
         const SizedBox(height: Tsizes.spaceBtwItems * 2),
-        const TsectionHeading(
-          headingtitle: "Others foods",
-          showactionbtn: true,
-        ),
+        TsectionHeading(
+            headingtitle: "Others foods",
+            showactionbtn: true,
+            onPressed: () => Get.to(() =>
+                const AllRecommandations(title: "Meals", filter: "Meal"))),
         const SizedBox(height: Tsizes.spaceBtwItems),
 
         // Others food list
@@ -41,21 +43,18 @@ class FoodView extends StatelessWidget {
                   (recommandation) => recommandation.type == "Meal")
               .take(10)
               .toList();
-          return 
-          controller.isRecommandationsLoading.value
-                  ? Tgridlayout(
-                      itemNumber: 4,
-                      crossaxiscount: 2,
-                      mainaxisextent: 211,
-                      itemBuilder: (_, index) {
-                        return const ShimmerEffect(height: 211, width: 140);
-                      }):
-          
-          controller.Recommandations.isEmpty
-              ? const Center(
-                  child: Text("No data found"),
-                )
-              
+          return controller.isRecommandationsLoading.value
+              ? Tgridlayout(
+                  itemNumber: 4,
+                  crossaxiscount: 2,
+                  mainaxisextent: 211,
+                  itemBuilder: (_, index) {
+                    return const ShimmerEffect(height: 211, width: 140);
+                  })
+              : controller.Recommandations.isEmpty
+                  ? const Center(
+                      child: Text("No data found"),
+                    )
                   : Tgridlayout(
                       itemNumber: meals.length,
                       mainaxisextent: 211,
