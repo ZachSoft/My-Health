@@ -10,13 +10,13 @@ class QualificationContentDoctorSetupAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = Get.put(DoctorSetupController());
+    final controller = Get.put(DoctorSetupController());
     return Form(
-        key: _controller.addressformkey,
+        key: controller.addressformkey,
         child: Column(
           children: [
             TextFormField(
-              controller: _controller.qualification1,
+              controller: controller.qualification1,
               validator: (value) =>
                   TValidator.validatePlainText("Qualification 1", value),
               decoration: const InputDecoration(
@@ -27,7 +27,7 @@ class QualificationContentDoctorSetupAccount extends StatelessWidget {
               height: Tsizes.spaceBtwInputFields,
             ),
             TextFormField(
-              controller: _controller.qualification2,
+              controller: controller.qualification2,
               decoration: const InputDecoration(
                   prefixIcon: Icon(Iconsax.document),
                   labelText: "Qualification 2"),
@@ -36,7 +36,7 @@ class QualificationContentDoctorSetupAccount extends StatelessWidget {
               height: Tsizes.spaceBtwInputFields,
             ),
             TextFormField(
-              controller: _controller.qualification3,
+              controller: controller.qualification3,
               decoration: const InputDecoration(
                   prefixIcon: Icon(Iconsax.document),
                   labelText: "Qualification 3"),
@@ -45,7 +45,7 @@ class QualificationContentDoctorSetupAccount extends StatelessWidget {
               height: Tsizes.spaceBtwInputFields,
             ),
             TextFormField(
-              controller: _controller.qualification4,
+              controller: controller.qualification4,
               decoration: const InputDecoration(
                   prefixIcon: Icon(Iconsax.document),
                   labelText: "Qualification 4"),
@@ -56,7 +56,7 @@ class QualificationContentDoctorSetupAccount extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
-                  onPressed: () => _controller.saveQualification(),
+                  onPressed: () => controller.saveQualification(),
                   child: const Text("Save")),
             )
           ],

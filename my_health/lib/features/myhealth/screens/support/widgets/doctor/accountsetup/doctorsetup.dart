@@ -10,7 +10,6 @@ import 'package:my_health/features/myhealth/screens/support/widgets/doctor/accou
 import 'package:my_health/features/myhealth/screens/support/widgets/doctor/controllers/doctorsetupcontroller.dart';
 import 'package:my_health/utils/constants/colors.dart';
 import 'package:my_health/utils/constants/sizes.dart';
-import 'package:my_health/utils/device/device_utility.dart';
 
 class DoctorSetupAccountScreen extends StatelessWidget {
   const DoctorSetupAccountScreen({Key? key}) : super(key: key);
@@ -26,71 +25,40 @@ class DoctorSetupAccountScreen extends StatelessWidget {
                 .headlineMedium!
                 .copyWith(fontWeight: FontWeight.w800)),
       ),
-      body: Stack(children: [
-        PageView(
-          controller: doctorsetupcontroller.pagecontroller,
-          onPageChanged: doctorsetupcontroller.updatePageindicator,
-          physics: const NeverScrollableScrollPhysics(),
-          children: const [
-            SingleViewPageSetup(
-              title: "Add a profile picture",
-              stepnumber: "1",
-              content: ImageContentDoctorSetup(),
-              subtitle:
-                  "Ensure a standout presence on MyHealth by adding a captivating profile picture. Your image is the first impression users will have across the app. Click to upload your photo now for enhanced visibility and connection",
-            ),
-            SingleViewPageSetup(
-              subtitle:
-                  "Maximize your visibility on MyHealth by adding your practice address. Patients rely on accurate location details for appointments. Click to include your address now, ensuring seamless connections with those seeking your expertise",
-              title: "Add your address",
-              stepnumber: "2",
-              content: AddressContentDoctorSetup(),
-            ),
-            SingleViewPageSetup(
-              subtitle:
-                  "Highlight your expertise on MyHealth by adding your qualifications.",
-              title: "Add your Qualifications",
-              stepnumber: "3",
-              content: QualificationContentDoctorSetupAccount(),
-            ),
-            SingleViewPageSetup(
-              subtitle:
-                  "Choose your working schedule now for a more efficient and well-coordinated practice.",
-              title: "Add your working schedule",
-              stepnumber: "4",
-              content: WorkingScheduleDoctor(),
-            ),
-          ],
-        ),
-
-        // Next button
-
-        Positioned(
-          bottom: TDeviceUtils.getBottomNavigationBarHeight(),
-          right: Tsizes.defaultSpace,
-          left: Tsizes.defaultSpace,
-          child: SizedBox(
-            width: double.infinity,
-            child: Obx(
-              () => ElevatedButton(
-                  onPressed: doctorsetupcontroller.isnextbuttonenabled.value
-                      ? () {
-                          doctorsetupcontroller.nextPage();
-                          doctorsetupcontroller.isnextbuttonenabled.value =
-                              false;
-                        }
-                      : null,
-                  child: Text(
-                    "Next->",
-                    style:
-                        doctorsetupcontroller.isnextbuttonenabled.value == false
-                            ? const TextStyle(color: Tcolors.Light)
-                            : null,
-                  )),
-            ),
+      body: PageView(
+        controller: doctorsetupcontroller.pagecontroller,
+        onPageChanged: doctorsetupcontroller.updatePageindicator,
+        children: const [
+          SingleViewPageSetup(
+            title: "Add a profile picture",
+            stepnumber: "1",
+            content: ImageContentDoctorSetup(),
+            subtitle:
+                "Ensure a standout presence on MyHealth by adding a captivating profile picture. Your image is the first impression users will have across the app. Click to upload your photo now for enhanced visibility and connection",
           ),
-        ),
-      ]),
+          SingleViewPageSetup(
+            subtitle:
+                "Maximize your visibility on MyHealth by adding your practice address. Patients rely on accurate location details for appointments. Click to include your address now, ensuring seamless connections with those seeking your expertise",
+            title: "Add your address",
+            stepnumber: "2",
+            content: AddressContentDoctorSetup(),
+          ),
+          SingleViewPageSetup(
+            subtitle:
+                "Highlight your expertise on MyHealth by adding your qualifications.",
+            title: "Add your Qualifications",
+            stepnumber: "3",
+            content: QualificationContentDoctorSetupAccount(),
+          ),
+          SingleViewPageSetup(
+            subtitle:
+                "Choose your working schedule now for a more efficient and well-coordinated practice.",
+            title: "Add your working schedule",
+            stepnumber: "4",
+            content: WorkingScheduleDoctor(),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:my_health/commons/widgets/customs_shapes/containers/circularshape.dart';
+import 'package:my_health/features/myhealth/screens/support/widgets/doctor/controllers/doctorsetupcontroller.dart';
 import 'package:my_health/utils/constants/colors.dart';
 import 'package:my_health/utils/constants/sizes.dart';
 import 'package:my_health/utils/helpers/helpers_functions.dart';
@@ -19,8 +21,8 @@ class SingleViewPageSetup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final dark = THelperFunctions.isDarkMode(context);
+    final controller = Get.put(DoctorSetupController());
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(Tsizes.defaultSpace),
@@ -75,7 +77,24 @@ class SingleViewPageSetup extends StatelessWidget {
             const SizedBox(
               height: Tsizes.spaceBtwSections * 2,
             ),
-            
+            Obx(
+              () => SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: controller.isnextbuttonenabled.value
+                        ? () {
+                            controller.nextPage();
+                            controller.isnextbuttonenabled.value = false;
+                          }
+                        : null,
+                    child: Text(
+                      "Next->",
+                      style: controller.isnextbuttonenabled.value == false
+                          ? const TextStyle(color: Tcolors.Light)
+                          : null,
+                    )),
+              ),
+            ),
           ],
         ),
       ),

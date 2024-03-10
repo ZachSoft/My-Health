@@ -10,16 +10,16 @@ class AddressContentDoctorSetup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _doctorsetupcontroller = Get.put(DoctorSetupController());
+    final doctorsetupcontroller = Get.put(DoctorSetupController());
     return Form(
-        key: _doctorsetupcontroller.addressformkey,
+        key: doctorsetupcontroller.addressformkey,
         child: Column(
           children: [
             const SizedBox(
               height: Tsizes.spaceBtwInputFields,
             ),
             TextFormField(
-              controller: _doctorsetupcontroller.street,
+              controller: doctorsetupcontroller.street,
               validator: (value) =>
                   TValidator.validatePlainText("Street", value),
               decoration: const InputDecoration(
@@ -31,7 +31,7 @@ class AddressContentDoctorSetup extends StatelessWidget {
             Row(children: [
               Expanded(
                 child: TextFormField(
-                  controller: _doctorsetupcontroller.city,
+                  controller: doctorsetupcontroller.city,
                   validator: (value) =>
                       TValidator.validatePlainText("City", value),
                   decoration: const InputDecoration(
@@ -43,7 +43,7 @@ class AddressContentDoctorSetup extends StatelessWidget {
               ),
               Expanded(
                 child: TextFormField(
-                  controller: _doctorsetupcontroller.state,
+                  controller: doctorsetupcontroller.state,
                   validator: (value) =>
                       TValidator.validatePlainText("State", value),
                   decoration: const InputDecoration(
@@ -55,7 +55,7 @@ class AddressContentDoctorSetup extends StatelessWidget {
               height: Tsizes.spaceBtwInputFields,
             ),
             TextFormField(
-              controller: _doctorsetupcontroller.country,
+              controller: doctorsetupcontroller.country,
               validator: (value) =>
                   TValidator.validatePlainText("Country", value),
               decoration: const InputDecoration(
@@ -67,7 +67,7 @@ class AddressContentDoctorSetup extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
-                  onPressed: () => _doctorsetupcontroller.saveAddress(),
+                  onPressed: () => doctorsetupcontroller.saveAddress(),
                   child: const Text("Save")),
             )
           ],

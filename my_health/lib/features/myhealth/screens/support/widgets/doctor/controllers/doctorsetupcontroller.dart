@@ -214,6 +214,7 @@ class DoctorSetupController extends GetxController {
 
   Future<void> selectTime(BuildContext context, int index, bool isFrom) async {
     final TimeOfDay? picked = await showTimePicker(
+      
       context: context,
       initialTime: TimeOfDay.now(),
     );
@@ -265,5 +266,46 @@ class DoctorSetupController extends GetxController {
 
     // Update the schedule list in the controller
     schedule[schedule.indexWhere((model) => model.day == day)] = currentDay;
+  }
+
+  //================= SAVING THE SCHEDULE
+
+  Future<void> saveSchedule() async {
+    try {
+      // loading the loader
+
+      TfullScreenLoader.openLoadingDialog(
+          "We are processing your information...", TImagestring.processing);
+// Check connectivity
+      final isConnected = await NetworkManager.instance.isconnected();
+
+      if (!isConnected) return;
+
+      final List<Map<String, dynamic>> scheduleMaps =
+          schedule.map((scheduleModel) => scheduleModel.toMap()).toList();
+
+      final Map<String, dynamic> query = {'schedules': scheduleMaps};
+
+      await _doctorRepository.updateSingleDoctorField(query);
+
+      await _doctorRepository.updateSingleDoctorField(query);
+      isnextbuttonenabled.value = true;
+
+// Remove the loader
+      TfullScreenLoader.stoploading();
+
+// Display the success message after saving the user
+
+// Uploading the doctor
+
+      Loaders.successSnackbar(
+          title: "Congratulations.",
+          message: "Your address was added successfully.");
+
+// Enable the nextButton
+    } catch (e) {
+      TfullScreenLoader.stoploading();
+      Loaders.errorSnackbar(title: 'Oh snap', message: e.toString());
+    }
   }
 }
