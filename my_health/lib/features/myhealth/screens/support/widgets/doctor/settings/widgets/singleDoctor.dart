@@ -6,7 +6,7 @@ import 'package:my_health/commons/widgets/images/Troundedimage.dart';
 import 'package:my_health/commons/widgets/login%20&%20signup/formdivider.dart';
 import 'package:my_health/commons/widgets/texts/Section_heading.dart';
 import 'package:my_health/commons/widgets/texts/buttonwithIconandtext.dart';
-import 'package:my_health/features/myhealth/screens/support/widgets/doctor/widgets/officeinformations.dart';
+import 'package:my_health/features/myhealth/screens/support/widgets/doctor/settings/widgets/officeinformations.dart';
 import 'package:my_health/utils/constants/colors.dart';
 import 'package:my_health/utils/constants/images_strings.dart';
 import 'package:my_health/utils/constants/sizes.dart';

@@ -16,8 +16,7 @@ class TTexts {
   static const String onBoardingSubTitle3 =
       "Empower your health through data-driven analytics and guidance.";
 // Home
-  static const String homeAppbarTitle = "Good day for shopping";
-  static const String homeAppbarSubTitle = "Zachsoft code it.";
+
 
   // FORM
   static const String email = "E-mail";

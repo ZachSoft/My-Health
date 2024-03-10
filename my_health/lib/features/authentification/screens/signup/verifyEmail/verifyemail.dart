@@ -10,9 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key, required this.email});
+  const VerifyEmailScreen({super.key, required this.email,});
 
   final String email;
+
 
   @override
   Widget build(BuildContext context) {

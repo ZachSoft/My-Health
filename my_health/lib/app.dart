@@ -18,9 +18,14 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       initialBinding: GeneralBindings(),
       // getPages: AppRoutes.pages,
-      home:  Scaffold(
+      home: Scaffold(
         body: Container(
           color: Tcolors.primary,
+          child: const Center(
+            child: CircularProgressIndicator(
+              color: Tcolors.white,
+            ),
+          ),
         ),
       ),
     );

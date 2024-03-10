@@ -1,7 +1,9 @@
 import 'package:my_health/data/repositories/userRepository/userRepository.dart';
+import 'package:my_health/doctornavigation.dart';
 import 'package:my_health/features/authentification/screens/onboarding/onboarding.dart';
 import 'package:my_health/features/authentification/screens/signin/signin.dart';
 import 'package:my_health/features/authentification/screens/signup/verifyEmail/verifyemail.dart';
+import 'package:my_health/features/myhealth/screens/support/widgets/doctor/accountsetup/startsetup.dart';
 import 'package:my_health/navigationbar.dart';
 import 'package:my_health/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:my_health/utils/exceptions/firebase_exceptions.dart';
@@ -14,6 +16,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthentificationRepository extends GetxController {
   static AuthentificationRepository get instance => Get.find();
+
+  final _userrepository = Get.put(UserRepository());
 
   final devicestorage =
       GetStorage(); // Creating an instance of the Gestorage for the local storage purpose
@@ -33,9 +37,21 @@ class AuthentificationRepository extends GetxController {
 
   void screenRedirect() async {
     final user = _auth.currentUser;
+
     if (user != null) {
       if (user.emailVerified) {
-        Get.off(() => const NavigationMenu());
+        // Creating a user model in order to decide who is the patient and who is the doctor
+
+        final usermodel = await _userrepository.fetchUserData();
+        if (usermodel.isdoctor) {
+          // redirect the doctor
+          devicestorage.writeIfNull("isfirstdoctorLogin", true);
+          devicestorage.read("isfirstdoctorLogin") != true
+              ? Get.off(() => const DoctorNavigationMenu())
+              : Get.offAll(() => const StartDoctorSetupAccount());
+        } else {
+          Get.off(() => const NavigationMenu());
+        }
       } else {
         Get.offAll(() => VerifyEmailScreen(email: user.email!));
       }

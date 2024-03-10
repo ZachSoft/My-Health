@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:my_health/commons/widgets/customs_shapes/containers/primary_header_container.dart';
 import 'package:my_health/commons/widgets/texts/Section_heading.dart';
 import 'package:my_health/features/myhealth/screens/support/widgets/appbar.dart';
 import 'package:my_health/features/myhealth/screens/support/widgets/category.dart';
-import 'package:my_health/features/myhealth/screens/support/widgets/doctor/doctors.dart';
+import 'package:my_health/features/myhealth/screens/support/widgets/doctor/settings/doctors.dart';
 import 'package:my_health/utils/constants/images_strings.dart';
 import 'package:my_health/utils/constants/sizes.dart';
 
@@ -27,21 +26,6 @@ class MyHealthSupportScreen extends StatelessWidget {
               child: Column(
                 children: [
                   // Search
-                  Form(
-                      child: Column(
-                    children: [
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Iconsax.search_normal),
-                          hintText: "Search anything",
-                        ),
-                      ),
-                    ],
-                  )),
-
-                  const SizedBox(
-                    height: Tsizes.spaceBtwSections,
-                  ),
 
                   // Categories
 

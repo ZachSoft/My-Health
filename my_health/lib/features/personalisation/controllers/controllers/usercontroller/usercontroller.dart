@@ -2,6 +2,7 @@ import 'package:my_health/data/repositories/authentification_repositories/authen
 import 'package:my_health/data/repositories/userRepository/userRepository.dart';
 import 'package:my_health/features/authentification/models/usermodel/userModel.dart';
 import 'package:my_health/features/authentification/screens/signin/signin.dart';
+import 'package:my_health/features/myhealth/screens/support/widgets/doctor/controllers/doctorsetupcontroller.dart';
 import 'package:my_health/features/personalisation/screens/settings/profile/actions/re_authenticate_user/re_authentication_user.dart';
 import 'package:my_health/utils/constants/colors.dart';
 import 'package:my_health/utils/constants/images_strings.dart';
@@ -216,6 +217,9 @@ class UserController extends GetxController {
         Loaders.successSnackbar(
             title: "Congratulations",
             message: "Your profile image has been updated");
+
+        // Updating the doctor isnextbuttonenable to true
+        DoctorSetupController.instance.isnextbuttonenabled.value = true;
       }
     } catch (e) {
       Loaders.errorSnackbar(title: "Oh snap", message: e.toString());

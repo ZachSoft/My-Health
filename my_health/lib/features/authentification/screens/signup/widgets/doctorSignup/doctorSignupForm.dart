@@ -1,5 +1,5 @@
 import 'package:my_health/commons/widgets/customs_shapes/containers/sortablewidget.dart';
-import 'package:my_health/features/authentification/controllers/signup/signupcontroller.dart';
+import 'package:my_health/features/authentification/controllers/signup/signupdoctorcontroller.dart';
 import 'package:my_health/utils/constants/TextString.dart';
 import 'package:my_health/utils/constants/colors.dart';
 import 'package:my_health/utils/constants/sizes.dart';
@@ -9,8 +9,8 @@ import 'package:get/get.dart';
 
 import 'package:iconsax/iconsax.dart';
 
-class signupForm extends StatelessWidget {
-  const signupForm({
+class DoctorsignupForm extends StatelessWidget {
+  const DoctorsignupForm({
     super.key,
     required this.dark,
   });
@@ -21,7 +21,7 @@ class signupForm extends StatelessWidget {
   Widget build(BuildContext context) {
     // creating the controller
 
-    final controller = Get.put(SignupController());
+    final controller = Get.put(SignupDoctorController());
     return Form(
       // passing the key of the form
       key: controller.signupFormKey,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_health/features/myhealth/screens/support/widgets/doctor/doctor.dart';
-import 'package:my_health/features/myhealth/screens/support/widgets/doctor/widgets/singleDoctor.dart';
+import 'package:my_health/features/myhealth/screens/support/widgets/doctor/settings/doctor.dart';
+import 'package:my_health/features/myhealth/screens/support/widgets/doctor/settings/widgets/singleDoctor.dart';
 import 'package:my_health/utils/constants/images_strings.dart';
 
 class Doctors extends StatelessWidget {

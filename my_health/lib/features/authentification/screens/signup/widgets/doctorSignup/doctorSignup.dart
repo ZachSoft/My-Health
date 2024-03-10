@@ -1,25 +1,29 @@
 import 'package:get/route_manager.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:my_health/commons/styles/Spacing_style.dart';
+import 'package:my_health/commons/widgets/appbar/appbar.dart';
 import 'package:my_health/commons/widgets/login%20&%20signup/formdivider.dart';
 import 'package:my_health/commons/widgets/login%20&%20signup/socialbutton.dart';
 import 'package:my_health/features/authentification/controllers/login/logincontroller.dart';
-import 'package:my_health/features/authentification/screens/signup/widgets/doctorSignup/doctorSignup.dart';
+import 'package:my_health/features/authentification/screens/signin/signin.dart';
+import 'package:my_health/features/authentification/screens/signup/widgets/doctorSignup/doctorSignupForm.dart';
 
-import 'package:my_health/features/authentification/screens/signup/widgets/signup_form.dart';
 import 'package:my_health/utils/constants/TextString.dart';
-import 'package:my_health/utils/constants/colors.dart';
 import 'package:my_health/utils/constants/sizes.dart';
 import 'package:my_health/utils/helpers/helpers_functions.dart';
 import 'package:flutter/material.dart';
 
-class MyHealthSignUpScreen extends StatelessWidget {
-  const MyHealthSignUpScreen({super.key});
+class MyHealthDoctorSignUpScreen extends StatelessWidget {
+  const MyHealthDoctorSignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     bool dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: TappBar(
+        leadingIcon: Iconsax.arrow_left,
+        leadingOnpressed: () => Get.off(() => const MyHealthSigninScreen()),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: TSpacingStyle.paddingwithAppbarHeight / 1.6,
@@ -27,8 +31,9 @@ class MyHealthSignUpScreen extends StatelessWidget {
             children: [
               // Header
               Text(
-                "Get Started",
+                "Unlocking New Horizons in Patient Care",
                 style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
               ),
 
               const SizedBox(
@@ -36,24 +41,18 @@ class MyHealthSignUpScreen extends StatelessWidget {
               ),
 
               Text(
-                "Welcome to My Health!!",
+                "Join MyHealth for Effortless Online and Physical Scheduling, Redefining Medical Connectivity.",
                 style: Theme.of(context).textTheme.bodyMedium,
+                textAlign: TextAlign.center,
               ),
 
-              TextButton(
-                  onPressed: () =>
-                      Get.to(() => const MyHealthDoctorSignUpScreen()),
-                  child: Text(
-                    "Create account as a doctor ->",
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: Tcolors.primary,
-                        ),
-                  )),
               const SizedBox(
                 height: Tsizes.spaceBtwItems,
               ),
               // Form
-              signupForm(dark: dark),
+              DoctorsignupForm(
+                dark: dark,
+              ),
 
               // Signup Btn
 

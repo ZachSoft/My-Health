@@ -9,8 +9,8 @@ import 'package:my_health/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SignupController extends GetxController {
-  static SignupController get instance => Get.find();
+class SignupDoctorController extends GetxController {
+  static SignupDoctorController get instance => Get.find();
 
   // variables
   final hidePassword = true.obs;
@@ -22,7 +22,7 @@ class SignupController extends GetxController {
   final userName = TextEditingController();
   final password = TextEditingController();
   final gender = 'Male';
-  var isdoctor = false;
+  var isdoctor = true;
 
   void setgender(String gender) {
     gender = gender;
