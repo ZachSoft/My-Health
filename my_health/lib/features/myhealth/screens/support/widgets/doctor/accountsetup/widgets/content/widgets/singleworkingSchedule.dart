@@ -99,7 +99,8 @@ class SingleWorkingSchedule extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   fromTime,
-                                  style: TextStyle(fontWeight: FontWeight.w500),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w500),
                                 ),
                               ),
                             ),
