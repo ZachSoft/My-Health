@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:my_health/data/repositories/authentification_repositories/authentification_repository.dart';
 import 'package:my_health/data/repositories/doctorrepository/doctorrepository.dart';
 import 'package:my_health/data/repositories/userRepository/userRepository.dart';
@@ -16,22 +15,46 @@ class DoctorSetupController extends GetxController {
   static DoctorSetupController get instance => Get.find();
   final pagecontroller = PageController();
   final _userrepository = Get.put(UserRepository());
+  final _doctorRepository = Get.put(DoctorRepository());
 
   Rx<int> currentPage = 0.obs;
 
   RxBool isnextbuttonenabled = false.obs;
-
-  final _doctorRepository = Get.put(DoctorRepository());
+  final Rx<DoctorModel> doctor = DoctorModel(
+    appointments: [],
+    id: "",
+    specialization: "",
+    qualifications: [],
+    experience: 0,
+    address: AddressModel(street: "", city: "", state: "", country: ""),
+    reviews: [],
+    averageRating: 0.0,
+    schedules: [],
+  ).obs;
 
   @override
   void onReady() {
+    fetchingDoctorData();
     checkUserHaveAnImage();
   }
 
   void checkUserHaveAnImage() async {
-    final usermodel = await _userrepository.fetchUserData();
-    if (usermodel.profilePicture.isNotEmpty) {
-      isnextbuttonenabled.value = true;
+    try {
+      final usermodel = await _userrepository.fetchUserData();
+      if (usermodel.profilePicture.isNotEmpty) {
+        isnextbuttonenabled.value = true;
+      }
+    } catch (e) {
+      Loaders.errorSnackbar(title: 'Oh snap', message: e.toString());
+    }
+  }
+
+  void fetchingDoctorData() async {
+    try {
+      final data = await _doctorRepository.fetchDoctorData();
+      doctor(data);
+    } catch (e) {
+      Loaders.errorSnackbar(title: 'Oh snap', message: e.toString());
     }
   }
 
@@ -43,11 +66,10 @@ class DoctorSetupController extends GetxController {
 
   // jumb to a specific dot selected page
 
-  void nextPage() {
+  void nextPage() async {
     if (currentPage.value == 3) {
-      final devicestorage = GetStorage();
-
-      devicestorage.write("isfirstdoctorLogin", false);
+      final Map<String, dynamic> issetupaccount = {'IsAccountSetup': true};
+      await _doctorRepository.updateSingleDoctorField(issetupaccount);
       Get.offAll(() => const DoctorNavigationMenu());
     }
     final page = currentPage.value + 1;
@@ -214,7 +236,6 @@ class DoctorSetupController extends GetxController {
 
   Future<void> selectTime(BuildContext context, int index, bool isFrom) async {
     final TimeOfDay? picked = await showTimePicker(
-      
       context: context,
       initialTime: TimeOfDay.now(),
     );

@@ -38,21 +38,21 @@ class Ttexttheme {
 //
   static TextTheme darktexttheme = TextTheme(
     headlineLarge: const TextStyle().copyWith(
-        fontSize: 32, fontWeight: FontWeight.bold, color: Tcolors.Light),
+        fontSize: 32, fontWeight: FontWeight.w800, color: Tcolors.Light),
     headlineMedium: const TextStyle().copyWith(
-        fontSize: 24, fontWeight: FontWeight.w600, color: Tcolors.Light),
+        fontSize: 28, fontWeight: FontWeight.w700, color: Tcolors.Light),
     headlineSmall: const TextStyle().copyWith(
-        fontSize: 20, fontWeight: FontWeight.w600, color: Tcolors.Light),
+        fontSize: 24, fontWeight: FontWeight.w400, color: Tcolors.Light),
     titleLarge: const TextStyle().copyWith(
-        fontSize: 16, fontWeight: FontWeight.w600, color: Tcolors.Light),
+        fontSize: 20, fontWeight: FontWeight.w200, color: Tcolors.Light),
     titleMedium: const TextStyle().copyWith(
-        fontSize: 16, fontWeight: FontWeight.w500, color: Tcolors.Light),
+        fontSize: 18, fontWeight: FontWeight.w200, color: Tcolors.Light),
     titleSmall: const TextStyle().copyWith(
-        fontSize: 16, fontWeight: FontWeight.w400, color: Tcolors.Light),
+        fontSize: 18, fontWeight: FontWeight.w200, color: Tcolors.Light),
     bodyLarge: const TextStyle().copyWith(
-        fontSize: 14, fontWeight: FontWeight.w500, color: Tcolors.Light),
+        fontSize: 14, fontWeight: FontWeight.w200, color: Tcolors.Light),
     bodyMedium: const TextStyle().copyWith(
-        fontSize: 14, fontWeight: FontWeight.w500, color: Tcolors.Light),
+        fontSize: 14, fontWeight: FontWeight.w100, color: Tcolors.Light),
     bodySmall: const TextStyle().copyWith(
       fontSize: 14,
       fontWeight: FontWeight.w500,

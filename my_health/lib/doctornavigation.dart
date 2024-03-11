@@ -1,6 +1,6 @@
 import 'package:my_health/features/myhealth/screens/support/widgets/doctor/screens/doctorappointement/doctorappointement.dart';
 import 'package:my_health/features/myhealth/screens/support/widgets/doctor/screens/doctorhome/doctorhome.dart';
-import 'package:my_health/features/myhealth/screens/support/widgets/doctor/screens/doctorprofile/doctorprofile.dart';
+import 'package:my_health/features/myhealth/screens/support/widgets/doctor/screens/messaging/messaging.dart';
 import 'package:my_health/utils/constants/colors.dart';
 import 'package:my_health/utils/helpers/helpers_functions.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +29,8 @@ class DoctorNavigationMenu extends StatelessWidget {
             NavigationDestination(icon: Icon(Iconsax.home), label: "Home"),
             NavigationDestination(
                 icon: Icon(Iconsax.activity), label: "Appointements"),
-            NavigationDestination(icon: Icon(Iconsax.user), label: "Profile"),
+            NavigationDestination(
+                icon: Icon(Iconsax.message), label: "Messages"),
           ],
         ),
       ),
@@ -44,6 +45,6 @@ class NavigationDoctorController extends GetxController {
   final List<Widget> screens = [
     const DoctorHomeScreen(),
     const DoctorAppointementScreen(),
-    const DoctorProfileScreen(),
+    const DoctorMessagingScreen(),
   ];
 }

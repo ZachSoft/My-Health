@@ -9,6 +9,7 @@ import 'package:my_health/features/personalisation/screens/profile/profile.dart'
 import 'package:my_health/utils/constants/colors.dart';
 import 'package:my_health/utils/constants/images_strings.dart';
 import 'package:my_health/utils/constants/sizes.dart';
+import 'package:my_health/utils/helpers/helpers_functions.dart';
 import 'package:my_health/utils/shimmers/shimmer.dart';
 
 class MyHealthAppBar extends StatelessWidget {
@@ -23,7 +24,7 @@ class MyHealthAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Good Morning!",
+            THelperFunctions.getGreeting(),
             style: Theme.of(context)
                 .textTheme
                 .headlineSmall!

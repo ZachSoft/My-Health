@@ -1,6 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:my_health/features/myhealth/screens/support/widgets/doctor/models/DoctorReviewModel.dart';
 
 class DoctorModel {
@@ -8,6 +6,7 @@ class DoctorModel {
   String specialization;
   List<String> qualifications;
   int experience;
+  bool isAccountSetup;
   AddressModel address;
   List<String>? languagesSpoken; // Nullable
   List<AppointmentFeeModel> appointments; // Nullable
@@ -21,6 +20,7 @@ class DoctorModel {
   int? numberOfAppointmentsTaken; // Nullable
 
   DoctorModel({
+    this.isAccountSetup = false,
     required this.id,
     required this.specialization,
     required this.qualifications,
@@ -55,27 +55,28 @@ class DoctorModel {
       'specialServices': specialServices,
       'schedules': schedules.map((x) => x.toMap()).toList(),
       'numberOfAppointmentsTaken': numberOfAppointmentsTaken,
+      'IsAccountSetup': isAccountSetup
     };
   }
 
-  factory DoctorModel.fromMap(Map<String, dynamic> map) {
+  factory DoctorModel.fromMap(DocumentSnapshot<Map<String, dynamic>> map) {
     return DoctorModel(
       id: map['id'] as String,
       specialization: map['specialization'] as String,
       qualifications:
-          List<String>.from((map['qualifications'] as List<String>)),
+          List<String>.from((map['qualifications'] as List<dynamic>)),
       experience: map['experience'] as int,
       address: AddressModel.fromMap(map['address'] as Map<String, dynamic>),
       languagesSpoken: map['languagesSpoken'] != null
           ? List<String>.from((map['languagesSpoken'] as List<String>))
           : null,
       appointments: List<AppointmentFeeModel>.from(
-        (map['appointments'] as List<int>).map<AppointmentFeeModel>(
+        (map['appointments'] as List<dynamic>).map<AppointmentFeeModel>(
           (x) => AppointmentFeeModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
       reviews: List<ReviewModel>.from(
-        (map['reviews'] as List<int>).map<ReviewModel>(
+        (map['reviews'] as List<dynamic>).map<ReviewModel>(
           (x) => ReviewModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
@@ -92,18 +93,14 @@ class DoctorModel {
           ? List<String>.from((map['specialServices'] as List<String>))
           : null,
       schedules: List<ScheduleModel>.from(
-        (map['schedules'] as List<int>).map<ScheduleModel>(
+        (map['schedules'] as List<dynamic>).map<ScheduleModel>(
           (x) => ScheduleModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
+      isAccountSetup: map['IsAccountSetup'],
       numberOfAppointmentsTaken: map['numberOfAppointmentsTaken'] != null
           ? map['numberOfAppointmentsTaken'] as int
           : null,
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory DoctorModel.fromJson(String source) =>
-      DoctorModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

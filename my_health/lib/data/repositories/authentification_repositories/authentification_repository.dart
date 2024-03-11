@@ -1,3 +1,4 @@
+import 'package:my_health/data/repositories/doctorrepository/doctorrepository.dart';
 import 'package:my_health/data/repositories/userRepository/userRepository.dart';
 import 'package:my_health/doctornavigation.dart';
 import 'package:my_health/features/authentification/screens/onboarding/onboarding.dart';
@@ -18,6 +19,7 @@ class AuthentificationRepository extends GetxController {
   static AuthentificationRepository get instance => Get.find();
 
   final _userrepository = Get.put(UserRepository());
+  final _doctorRepository = Get.put(DoctorRepository());
 
   final devicestorage =
       GetStorage(); // Creating an instance of the Gestorage for the local storage purpose
@@ -43,12 +45,15 @@ class AuthentificationRepository extends GetxController {
         // Creating a user model in order to decide who is the patient and who is the doctor
 
         final usermodel = await _userrepository.fetchUserData();
+
         if (usermodel.isdoctor) {
           // redirect the doctor
-          devicestorage.writeIfNull("isfirstdoctorLogin", true);
-          devicestorage.read("isfirstdoctorLogin") != true
-              ? Get.off(() => const DoctorNavigationMenu())
-              : Get.offAll(() => const StartDoctorSetupAccount());
+          final doctor = await _doctorRepository.fetchDoctorData();
+          if (doctor.isAccountSetup) {
+            Get.offAll(() => const DoctorNavigationMenu());
+          } else {
+            Get.offAll(() => const StartDoctorSetupAccount());
+          }
         } else {
           Get.off(() => const NavigationMenu());
         }

@@ -8,8 +8,6 @@ import 'package:my_health/features/myhealth/screens/support/widgets/doctor/accou
 import 'package:my_health/features/myhealth/screens/support/widgets/doctor/accountsetup/widgets/content/workingschedule.dart';
 import 'package:my_health/features/myhealth/screens/support/widgets/doctor/accountsetup/widgets/singlepagesetup.dart';
 import 'package:my_health/features/myhealth/screens/support/widgets/doctor/controllers/doctorsetupcontroller.dart';
-import 'package:my_health/utils/constants/colors.dart';
-import 'package:my_health/utils/constants/sizes.dart';
 
 class DoctorSetupAccountScreen extends StatelessWidget {
   const DoctorSetupAccountScreen({Key? key}) : super(key: key);
