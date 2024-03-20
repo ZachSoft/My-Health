@@ -12,7 +12,8 @@ class TappBar extends StatelessWidget implements PreferredSizeWidget {
       this.leadingIcon,
       this.actions,
       this.title,
-      this.centertitle = false});
+      this.centertitle = false,
+      this.bottom});
 
   final VoidCallback? leadingOnpressed;
   final bool showbackarrow;
@@ -20,6 +21,7 @@ class TappBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final Widget? title;
   final bool centertitle;
+  final PreferredSizeWidget? bottom;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,10 +41,13 @@ class TappBar extends StatelessWidget implements PreferredSizeWidget {
                 : null,
         title: title,
         actions: actions,
+        bottom: bottom,
       ),
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(TDeviceUtils.getAppBarHeight());
+  Size get preferredSize => Size.fromHeight(bottom != null
+      ? TDeviceUtils.getAppBarHeight() * 2
+      : TDeviceUtils.getAppBarHeight());
 }

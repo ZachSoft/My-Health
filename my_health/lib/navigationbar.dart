@@ -1,6 +1,6 @@
 import 'package:my_health/features/myhealth/screens/bot/bot.dart';
 import 'package:my_health/features/myhealth/screens/home/homepage/home.dart';
-import 'package:my_health/features/myhealth/screens/recommandations/recommmandatios.dart';
+import 'package:my_health/features/myhealth/screens/recommandations/recommandations.dart';
 import 'package:my_health/features/myhealth/screens/support/supportScreen.dart';
 import 'package:my_health/utils/constants/colors.dart';
 import 'package:my_health/utils/helpers/helpers_functions.dart';

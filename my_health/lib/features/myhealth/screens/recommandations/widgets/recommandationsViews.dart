@@ -15,7 +15,8 @@ class RecommandationsViews extends StatelessWidget {
       children: [
         SizedBox(
           height: 40,
-          child: ListView(
+          child: 
+          ListView(
             scrollDirection: Axis.horizontal,
             children: [
               Obx(

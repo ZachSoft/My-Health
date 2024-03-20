@@ -59,12 +59,20 @@ class MyHealthDoctorAppBar extends StatelessWidget {
                     .bodyLarge!
                     .copyWith(color: Tcolors.white),
               ),
-              Text(
-                'Dr. ${controller.user.value.firstname.capitalizeFirst}',
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: Tcolors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
+              Obx(
+                () => controller.profileloading.value == true
+                    ? const ShimmerEffect(
+                        height: 20,
+                        width: 60,
+                      )
+                    : Text(
+                        'Dr. ${controller.user.value.firstname.capitalizeFirst}',
+                        style:
+                            Theme.of(context).textTheme.titleMedium!.copyWith(
+                                  color: Tcolors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                      ),
               ),
             ],
           ),
