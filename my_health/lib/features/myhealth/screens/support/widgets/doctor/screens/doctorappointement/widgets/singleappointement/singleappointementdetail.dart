@@ -136,7 +136,7 @@ class SingleAppointmentDetailsDoctor extends StatelessWidget {
                   headingtitle: 'Appointment details',
                 ),
                 const SizedBox(
-                  height: Tsizes.spaceBtwItems,
+                  height: Tsizes.spaceBtwSections,
                 ),
                 // Apointment details
 
@@ -162,14 +162,14 @@ class SingleAppointmentDetailsDoctor extends StatelessWidget {
                   value: "Video call",
                 ),
                 const SizedBox(
-                  height: Tsizes.spaceBtwItems,
+                  height: Tsizes.spaceBtwItems * 2,
                 ),
 
                 const TsectionHeading(
                   headingtitle: 'Quick actions',
                 ),
                 const SizedBox(
-                  height: Tsizes.spaceBtwItems,
+                  height: Tsizes.spaceBtwItems * 2,
                 ),
 
                 Row(
